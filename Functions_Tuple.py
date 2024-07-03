@@ -1,0 +1,12 @@
+t1=(1,2,3,4,5)
+t2=(6,7,8,9)
+#length
+print(len(t1))
+#maximum
+print(max(t1))
+#minimum
+print(min(t1))
+#sorting
+print(sorted(t1))
+#reversing
+print(sorted(t1,reverse=True))
