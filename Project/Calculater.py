@@ -2,24 +2,39 @@ from tkinter import *
 first_num=second_num=result=None
 
 def get_Digit(digit):
+    
     current=result_lable['text']
     new=current+str(digit)
     result_lable.config(text=new)
 
+
+
+def get_del():
+        result_lable.config(text=result_lable['text'][:-1])
+
 def clear():
     result_lable.config(text='')
 
+
 def get_operation(op):
     global first_num,operator
-    first_num=int(result_lable['text'])
-    operator=op
-    result_lable.config(text='')
-    
+    temp=result_lable['text']
+    if '.' not in temp:
+        first_num=int(temp)
+        operator=op
+        result_lable.config(text='')
+    else:
+        first_num=float(temp)
+        operator=op
+        result_lable.config(text='')
 
 def get_result():
     global first_num,operator
-    second_num=int(result_lable['text'])
-
+    temp=result_lable['text']
+    if '.' not in temp:
+        second_num=int(temp)
+    else:
+        second_num=float(temp)
     if operator=='+':
         result_lable.config(text=first_num + second_num)
     elif operator=='-':
@@ -32,20 +47,26 @@ def get_result():
         else:
             result_lable.config(text=first_num / second_num)
     elif operator=='%':
-        result_lable.config(text=first_num % second_num)
+            result_lable.config(text=first_num % second_num)
     
     
 def get_square():
     # global first_num
     first_num=int(result_lable['text'])
-    result_lable.config(text=first_num ** 2)
+    if first_num<0 and first_num==0 and type(first_num)==int:
+        result_lable.config(text=first_num ** 2)
+    else:
+        result_lable.config(text='Error')
 
-   
+
 
 root=Tk()
 root.title("Calculator")
 root.geometry("422x452")
 root.resizable(0,0)
+root.iconbitmap('D:/Python/Project/Wallpaper/s.jpg')
+
+
 root.config(bg='black')
 
 result_lable=Label(root,text='',fg='white',bg='black',font=('verdana',20,'bold'))
@@ -57,14 +78,14 @@ btn_mod.grid(row=1,column=0)
 btn_All_Clear=Button(root,text='AC',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=clear)
 btn_All_Clear.grid(row=1,column=1)
 
-btn_Cancel=Button(root,text='c',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=clear)
+btn_Cancel=Button(root,text='C',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=clear)
 btn_Cancel.grid(row=1,column=3)
 
-btn_last_delete=Button(root,text="DEL",fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'))
+btn_last_delete=Button(root,text="DEL",fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=get_del)
 btn_last_delete.grid(row=1,column=4,)
 
-btn_4=Button(root,text=4,fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'))
-btn_4.grid(row=2,column=0,)
+btn_history=Button(root,text='history',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'))
+btn_history.grid(row=2,column=0,)
 
 btn_Squar=Button(root,text='x^2',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_square())
 btn_Squar.grid(row=2,column=1,)
@@ -111,13 +132,13 @@ btn_3.grid(row=5,column=3,)
 btn_add=Button(root,text='+',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_operation('+'))
 btn_add.grid(row=5,column=4,)
 
-btn_plus_minus=Button(root,text='1',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'))
+btn_plus_minus=Button(root,text='00',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_Digit(00))
 btn_plus_minus.grid(row=6,column=0,)
 
 btn_Zero=Button(root,text='0',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_Digit(0))
 btn_Zero.grid(row=6,column=1,)
 
-btn_Decimal=Button(root,text='.',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'))
+btn_Decimal=Button(root,text='.',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_Digit('.'))
 btn_Decimal.grid(row=6,column=3,)
 
 btn_Equal=Button(root,text='=',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=get_result)
