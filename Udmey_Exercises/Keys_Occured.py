@@ -12,3 +12,16 @@ nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
 in culpa qui officia deserunt mollit anim id est laborum.
 """
+counts = {}
+for c in s1:
+    if (ord(c) >= ord('a') and ord(c) <= ord('z')) or (ord(c) >= ord('A') and ord(c) <= ord('Z')):
+        counts[c] = counts.get(c, 0) + 1
+        
+print(counts)
+
+counts = {}
+for c in s2:
+    if (ord(c) >= ord('a') and ord(c) <= ord('z')) or (ord(c) >= ord('A') and ord(c) <= ord('Z')):
+        counts[c] = counts.get(c, 0) + 1
+        
+print(counts)
