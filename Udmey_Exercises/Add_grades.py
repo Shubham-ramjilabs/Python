@@ -10,7 +10,7 @@ exam= {
 }
 def add_grades():
     for values , in grades.items():
-        values[1].insert(0,grade)
+        values[1].insert(0)
 
 
 

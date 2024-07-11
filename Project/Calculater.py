@@ -1,11 +1,17 @@
 from tkinter import *
+import math
 first_num=second_num=result=None
 
 def get_Digit(digit):
+    if digit in ('00','000'):
+        current=result_lable['text']
+        new=current+'00'
+        result_lable.config(text=new)
+    else:
+        current=result_lable['text']
+        new=current+str(digit)
+        result_lable.config(text=new)
     
-    current=result_lable['text']
-    new=current+str(digit)
-    result_lable.config(text=new)
 
 
 
@@ -58,7 +64,9 @@ def get_square():
     else:
         result_lable.config(text='Error')
 
-
+def get_square_root():
+    first_num=int(result_lable['text'])
+    result_lable.config(text=math.sqrt(first_num))
 
 root=Tk()
 root.title("Calculator")
@@ -87,10 +95,10 @@ btn_last_delete.grid(row=1,column=4,)
 btn_history=Button(root,text='history',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'))
 btn_history.grid(row=2,column=0,)
 
-btn_Squar=Button(root,text='x^2',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_square())
+btn_Squar=Button(root,text='x\u00b2',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_square())
 btn_Squar.grid(row=2,column=1,)
 
-btn_6=Button(root,text=6,fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'))
+btn_6=Button(root,text='√',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_square_root())
 btn_6.grid(row=2,column=3,)
 
 btn_div=Button(root,text='÷',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_operation('/'))
@@ -132,7 +140,7 @@ btn_3.grid(row=5,column=3,)
 btn_add=Button(root,text='+',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_operation('+'))
 btn_add.grid(row=5,column=4,)
 
-btn_plus_minus=Button(root,text='00',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_Digit(00))
+btn_plus_minus=Button(root,text='00',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_Digit('00'))
 btn_plus_minus.grid(row=6,column=0,)
 
 btn_Zero=Button(root,text='0',fg='white',bg='#666666',width=5,height=1,font=('verdana',20,'bold'),command=lambda:get_Digit(0))

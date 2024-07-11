@@ -26,3 +26,7 @@ for d in (d1, d2, d3):
     for key, value in d.items():
         keys.append(key)
         values.append(value)
+
+
+
+        
