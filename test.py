@@ -1,6 +1,2 @@
-num1=10
-num2=10
-sum=num1+num2
-print(sum)
-import keyword
-print(keyword.kwlist)
+import time
+print(time.gmtime(0))
